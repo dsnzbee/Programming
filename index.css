@@ -18,16 +18,30 @@ html,body{
   min-height:100%;
   overflow-x:hidden;
   scroll-behavior:smooth;
-  font-family:Arial, Helvetica, sans-serif;
   color:var(--text);
   background: var(--bg);
   align-items: center;
   justify-content: center;
+  font-family: 'gilroy-regular', 'gilroy-bold', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('fonts/Gilroy-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('fonts/Gilroy-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
 }
 
 a{color:inherit;text-decoration:none}
 
-.topbar{
+.top{
   position:fixed;
   width:100%;
   z-index:1000;
@@ -42,8 +56,8 @@ a{color:inherit;text-decoration:none}
   box-shadow:0 8px 24px rgba(58,45,34,0.06);
 }
 
-.name{
-  font-size:18px;
+.me{
+  font-size:24px;
   font-weight: 800;
   letter-spacing:0.3px;
   text-transform:lowercase;
@@ -66,7 +80,7 @@ a{color:inherit;text-decoration:none}
   color:var(--text);
 }
 
-.hero{
+.landing{
   position: relative;
   width: 100%;
   min-height: 100vh;
@@ -79,7 +93,7 @@ a{color:inherit;text-decoration:none}
   
 
 
-.hero-bg{
+.backimg{
   position: absolute;
   inset: 0;
   background: url("hero.jpg") center top / cover no-repeat;
@@ -87,7 +101,7 @@ a{color:inherit;text-decoration:none}
   opacity: 0.8;
 }
 
-.hero-content{
+.content{
   position: relative;
   z-index: 2;
   width: 100%;
@@ -105,16 +119,13 @@ a{color:inherit;text-decoration:none}
   display: flex;
   flex-direction: column;
   overflow: hidden;
-}
-
-.hero-copy{
-  width: 100%;
+    width: 100%;
   max-width: none;
   color: var(--text);
   padding-top: 22px;
 }
 
-.eyebrow{
+.nametext{
   font-size: 14px;
   letter-spacing: 0.14em;
   color: var(--muted);
@@ -166,7 +177,7 @@ h1{
   color: var(--muted);
 }
 
-.eyebrow2{
+.header2{
   font-size: 14px;
   letter-spacing: 0.08em;
   color: var(--muted);
@@ -252,7 +263,7 @@ h1{
   color:#ffffff;
 }
 
-.card-strip {
+.level{ 
   display: flex;
   gap: 16px;
   overflow-x: auto;

@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>portfolio</title>
     <link rel="stylesheet" href="index.css">
-    <link rel="icon" type="image/x-icon" href="assets/untitled.png">
+    <link rel="icon" type="image/x-icon" href="assets/Untitled.png">
 </head>
 <body>
+
+    <div class="pagelid" id="pagelid">
 
     <header class = "top">
         <div class="me" style="font-family: 'bGilroy';">dsnzb.</div>
@@ -86,6 +88,12 @@
       Projects</div>
     </div>
 
+<section class="projects" id = "projects">
+  <div class="section-header">
+    <div class="section-title" style="font-family: 'bGilroy'; margin:0 0 8px; margin-left: 15px; font-size:clamp(32px, 4vw, 40px); font-weight:800; color:var(--text);">
+      Projects</div>
+  </div>
+
      <!-- this section code is very untidy, i will organize it if i have time -->
     <div class="section-about" style="margin:0 0 24px; margin-left: 15px; margin-bottom: 50px; font-size:clamp(15px, 4vw, 15px); color:var(--muted);">
       ⓘ the <span style="padding: 6px 10px;
@@ -103,7 +111,6 @@
 
      <div class="section-title" style="margin:0 0 8px; margin-left: 15px; font-size:clamp(15px, 4vw, 15px); font-weight:700; color:var(--text);">
       Only front-end:</div>
-    </div>
     <div class="level">
   <article class="stay-card">
     <div class="card-image">
@@ -125,8 +132,8 @@
       <div class="tags">
         <div class="tag">
         <span>Javascript</span>
+        </div>
       </div>
-
     </div>
   </article>
 
@@ -150,7 +157,6 @@
       <div class="tags">
         <span class = "tag">HTML, CSS</span>
       </div>
-
     </div>
   </article>
 
@@ -174,8 +180,6 @@
      <div class="tags">
         <span class="tag">Javascript</span>
       </div>
-
-
     </div>
   </article>
 
@@ -199,13 +203,10 @@
       <div class="tags">
         <div class="tag">
         <span>HTML, CSS</span>
+        </div>
       </div>
-
     </div>
   </article>
-
-
-
 
   <article class="stay-card">
     <div class="card-image">
@@ -226,7 +227,6 @@
       <div class="tags">
         <span class = "tag">HTML, CSS</span>
       </div>
-
     </div>
   </article>
 
@@ -235,7 +235,6 @@
 <!-- atleast i have some here -->
 <div class="section-title" style="margin:0 0 8px; margin-left: 15px; margin-top: 40px; font-size:clamp(15px, 4vw, 15px); font-weight:700; color:var(--muted);">
       Full-stack:</div>
-    </div>
     <div class="level">
   <article class="stay-card">
     <div class="card-image">
@@ -245,7 +244,7 @@
     <div class="card-content">
       <div class="card-top">
         <h3>Angan AI (incomplete)</h3>
-        <p style="font-weight: bold; font-size: 10.2px; color: var(--bg); background: rgba(181, 241, 141, 0.856); padding: 4px 8px; border-radius: 12px;">8/26</p>
+        <p style="font-weight: bold; font-size: 10.2px; color: var(--bg); background: rgba(241, 141, 141, 0.856); padding: 4px 8px; border-radius: 12px;">-</p>
         <a class="web-btn" href="https://dsnzbee.github.io/angan/" target="_blank" rel="noopener noreferrer" aria-label="Open project">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
@@ -259,7 +258,6 @@
         <span>AI/ML</span>
         </div>
       </div>
-
     </div>
   </article>
 
@@ -285,7 +283,6 @@
         <span>GraphRAG</span>
         </div>
       </div>
-
     </div>
   </article>
 
@@ -310,19 +307,16 @@
         <div class="tag">
         <span>AstronomyEngine (JS)</span>
         </div>
-        </div>
       </div>
-
     </div>
   </article>
-  
+
 </div>
 
 
 <!-- I DONT EVEN HAVE ANY RN :(-->
 <div class="section-title" style="margin:0 0 8px; margin-left: 15px; margin-top: 40px; font-size:clamp(15px, 4vw, 15px); font-weight:700; color:var(--muted);">
       Only back-end:</div>
-    </div>
     <div class="level">
   <article class="stay-card">
     <div class="card-image">
@@ -344,75 +338,14 @@
       <div class="tags">
         <div class="tag">
         <span>AI/ML</span>
+        </div>
       </div>
-
     </div>
   </article>
 </div>
 
 
-
-<!-- do people even care about lua projects?-->
-<div class="section-title" style="margin:0 0 8px; margin-left: 15px; margin-top: 40px; font-size:clamp(15px, 4vw, 15px); font-weight:700; color:var(--muted);">
-      Other:</div>
-    </div>
-    <div class="level">
-  <article class="stay-card">
-    <div class="card-image">
-      <img src="assets/photo1.png">
-    </div>
-
-    <div class="card-content">
-      <div class="card-top">
-        <h3>JS Mouse VH (Desktop)</h3>
-        <a class="web-btn" href="#" target="_blank" rel="noopener noreferrer" aria-label="Open project">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
-            <path d="M3 12h18M12 3c2.8 3 2.8 15 0 18M12 3c-2.8 3-2.8 15 0 18" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path>
-          </svg>
-        </a>
-      </div>
-
-      <div class="tags">
-        <div class="tag">
-        <span>Javascript</span>
-      </div>
-
-    </div>
-  </article>
-</div>
-
 </section>
-
-<hr style="margin: 0; border: none; margin-top: 10px; margin-bottom: 50px; border-top: 1px solid rgba(133, 119, 106, 0.308);">
-<section class="certifications" id = "certifications">
-  <div class="section-header">
-    <div class="section-title" style="font-family: 'bGilroy'; margin: 0 0 8px; margin-left: 15px; font-size:24px; font-weight:500; color:var(--text);">
-       Certifications & Achievements</div>
-    </div>
-    <div class="certificates">
-      
-      <div class="certificate">
-        <img src="assets/cert1.png" alt="Certification 2">
-        <div class ="certcontent">
-          <div class="certags">
-            <span class="certag">JavaScript Algorithms (FCC)</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="certificate">
-        <img src="assets/cert2.png" alt="Certification 2">
-        <div class ="certcontent">
-          <div class="certags">
-            <span class="certag">USAII Hackathon 2026 Finalist</span>
-          </div>
-        </div>
-      </div>
-  </div>
-</section>
-  
-
 
 <hr style="margin: 0; border: none; margin-top: 10px; margin-bottom: 00px; border-top: 1px solid rgba(133, 119, 106, 0.308);">
 <section class="about" id = "about">
@@ -467,6 +400,84 @@
 
 </section>
 
+<hr style="margin: 0; border: none; margin-top: 10px; margin-bottom: 50px; border-top: 1px solid rgba(133, 119, 106, 0.308);">
+<section class="certifications" id="certifications">
+  <div class="section-header">
+    <div class="section-title" style="font-family: 'bGilroy'; margin: 0 0 8px; margin-left: 15px; font-size:24px; font-weight:500; color:var(--text);">
+       Certifications & Achievements</div>
+  </div>
+
+  <div class="certgrid" id="certgrid">
+
+    <button class="certcard" type="button" data-full="assets/cert1.png" data-caption="JavaScript Algorithms (FreeCodeCamp)">
+      <span class="certpicwrap">
+        <img src="assets/cert1.png" alt="JavaScript Algorithms certificate" loading="lazy">
+        <span class="certsheen"></span>
+      </span>
+      <span class="certfoot">
+        <span class="certag">JavaScript Algorithms (FCC)</span>
+        <span class="certzoom" aria-hidden="true">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"></path><path d="M9 21H3v-6"></path><path d="M21 3l-7 7"></path><path d="M3 21l7-7"></path></svg>
+        </span>
+      </span>
+    </button>
+
+    <button class="certcard" type="button" data-full="assets/cert2.png" data-caption="USAII Hackathon 2026 Finalist">
+      <span class="certpicwrap">
+        <img src="assets/cert2.png" alt="USAII Hackathon 2026 finalist certificate" loading="lazy">
+        <span class="certsheen"></span>
+      </span>
+      <span class="certfoot">
+        <span class="certag">USAII Hackathon 2026 Finalist</span>
+        <span class="certzoom" aria-hidden="true">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"></path><path d="M9 21H3v-6"></path><path d="M21 3l-7 7"></path><path d="M3 21l7-7"></path></svg>
+        </span>
+      </span>
+    </button>
+
+  </div>
+</section>
+
+<div class="certpop" id="certpop" aria-hidden="true">
+  <div class="certpopback" id="certpopback"></div>
+  <figure class="certpopcard" id="certpopcard">
+    <button class="certpopclose" id="certpopclose" type="button" aria-label="Close">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"></path><path d="M6 6l12 12"></path></svg>
+    </button>
+    <img class="certpopimg" id="certpopimg" src="" alt="">
+    <figcaption class="certpopcaption" id="certpopcaption"></figcaption>
+  </figure>
+</div>
+
+    </div><!-- /.pagelid -->
+
+<footer class="endbar" id="endbar">
+  <div class="endcard" id="endcard">
+
+    <div class="endleft">
+      <span class="endlogo">dsnzb.</span>
+      <span class="enddot">&copy;</span>
+    </div>
+
+    <p class="endnote">Crafted with love and peak attention to detail.</p>
+
+    <div class="endlinks">
+      <a class="endlink" href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.11 20.45H3.56V9h3.55v11.45z"/></svg>
+      </a>
+      <a class="endlink" href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.2c0 4.5 2.87 8.32 6.84 9.67.5.1.68-.22.68-.49 0-.24-.01-1.03-.01-1.87-2.78.61-3.37-1.21-3.37-1.21-.45-1.18-1.11-1.49-1.11-1.49-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.9 1.56 2.36 1.11 2.93.85.09-.66.35-1.11.64-1.37-2.22-.26-4.56-1.14-4.56-5.05 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.72 0 0 .84-.27 2.75 1.05a9.3 9.3 0 0 1 5.01 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.92-2.35 4.78-4.58 5.04.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.2C22 6.58 17.52 2 12 2z"/></svg>
+      </a>
+      <a class="endlink" href="https://discord.com/users/yourid" target="_blank" rel="noopener noreferrer" aria-label="Discord">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.32 5.37a17.9 17.9 0 0 0-4.43-1.37c-.2.35-.42.83-.58 1.2a16.6 16.6 0 0 0-4.98 0c-.16-.38-.4-.85-.6-1.2-1.54.26-3.02.72-4.42 1.37C2.6 9.1 1.9 12.72 2.24 16.29a18 18 0 0 0 5.48 2.76c.44-.6.84-1.24 1.18-1.92-.65-.24-1.27-.54-1.86-.9.16-.11.31-.23.46-.35a12.8 12.8 0 0 0 10.98 0c.15.12.3.24.46.35-.59.36-1.21.66-1.86.9.34.68.74 1.32 1.18 1.92a18 18 0 0 0 5.48-2.76c.4-4.14-.67-7.72-2.82-10.92zM9.68 14.1c-.94 0-1.71-.87-1.71-1.94 0-1.07.75-1.94 1.71-1.94.97 0 1.73.88 1.71 1.94 0 1.07-.74 1.94-1.71 1.94zm4.65 0c-.94 0-1.71-.87-1.71-1.94 0-1.07.75-1.94 1.71-1.94.97 0 1.73.88 1.71 1.94 0 1.07-.74 1.94-1.71 1.94z"/></svg>
+      </a>
+    </div>
+
+  </div>
+</footer>
+
 <script src="aboutscript.js" defer></script>
+<script src="certscript.js" defer></script>
+<script src="endscript.js" defer></script>
 </body>
 </html>

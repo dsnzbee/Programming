@@ -17,7 +17,6 @@
   const abchunks = abstick.querySelectorAll(".abchunk");
   const abtriggers = document.querySelectorAll(".abtrigger");
 
-  const PIN_TOP = 110; // must match the `top` used for .abpinned in the CSS
   const mobileQuery = window.matchMedia("(max-width: 860px)");
 
   let currentStep = 0;
@@ -39,6 +38,9 @@
   }
 
   // --- pinning (skipped entirely on mobile, where the CSS just stacks things) ---
+  // the panel is vertically centered in the viewport while pinned (see
+  // .abpinned in the CSS), so the trigger points are anchored to the
+  // viewport's center rather than a fixed top offset.
   function updatePin() {
     if (mobileQuery.matches) {
       abstick.classList.remove("abpinned", "abparked");
@@ -49,20 +51,23 @@
 
     const rect = abwrap.getBoundingClientRect();
     const stickHeight = abstick.offsetHeight;
+    const center = window.innerHeight / 2;
+    const pinnedTop = center - stickHeight / 2;
+    const pinnedBottom = center + stickHeight / 2;
 
-    if (rect.top > PIN_TOP) {
+    if (rect.top > pinnedTop) {
       // haven't reached it yet — sits at the top of the wrap
       abstick.classList.remove("abpinned", "abparked");
       abstick.style.left = "";
       abstick.style.width = "";
-    } else if (rect.bottom - stickHeight < PIN_TOP) {
+    } else if (rect.bottom < pinnedBottom) {
       // scrolled past it — park at the bottom of the wrap
       abstick.classList.remove("abpinned");
       abstick.classList.add("abparked");
       abstick.style.left = "";
       abstick.style.width = "";
     } else {
-      // currently inside it — pin to the viewport
+      // currently inside it — pin to the viewport, centered
       const cs = getComputedStyle(abwrap);
       const padLeft = parseFloat(cs.paddingLeft) || 0;
       const padRight = parseFloat(cs.paddingRight) || 0;

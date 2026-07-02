@@ -1101,18 +1101,21 @@ h1{
   top: 0;
   left: 0;
   right: 0;
-  height: 460px;
+  height: min(620px, 72vh);
   z-index: 2;
 }
 
 /* pinned: JS sets this while the wrap is being scrolled through.
    left/width are set inline by JS to match abwrap's content box,
-   since fixed elements no longer respect the parent's padding. */
+   since fixed elements no longer respect the parent's padding.
+   centered vertically in the viewport so the panel fills the screen
+   instead of sitting near the top with empty space below it. */
 .abstick.abpinned{
   position: fixed;
-  top: 110px;
+  top: 50%;
   left: 0;
   right: auto;
+  transform: translateY(-50%);
 }
 
 /* parked: scrolled past the wrap, rests at its bottom edge */
@@ -1221,6 +1224,16 @@ h1{
 }
 
 @media (max-width: 860px){
+  /* mobile doesn't do the pin/switch trick at all — too fiddly to get
+     right across devices. instead every layer just becomes a normal
+     stacked card, image above text, in order. display:contents on the
+     two boxes lets their children become direct flex items of abstick
+     so the images and text blocks can be interleaved via `order`. */
+
+  .abwrap{
+    padding-top: 20px;
+  }
+
   .abstick{
     position: static !important;
     height: auto;
@@ -1229,35 +1242,439 @@ h1{
     top: auto;
     bottom: auto;
     width: 100% !important;
+    display: flex;
+    flex-direction: column;
   }
 
-  .abimgbox{
-    position: relative;
-    width: 100%;
-    height: 300px;
-    transform: none !important;
-    margin-bottom: 24px;
-  }
-
+  .abimgbox,
   .abtextbox{
+    display: contents;
+  }
+
+  .abimg{
     position: static;
     width: 100%;
-    height: auto;
+    height: 260px;
+    border-radius: var(--radius);
+    object-fit: cover;
+    opacity: 1 !important;
     transform: none !important;
-    padding: 0;
+    box-shadow: var(--shadow-strong);
+    border: 1px solid rgba(255,255,255,0.08);
   }
 
   .abchunk{
     position: static;
+    opacity: 1 !important;
     transform: none !important;
+    pointer-events: auto !important;
+    margin: 14px 0 44px;
+  }
+
+  .abimg:nth-of-type(1){ order: 1; }
+  .abchunk:nth-of-type(1){ order: 2; }
+  .abimg:nth-of-type(2){ order: 3; }
+  .abchunk:nth-of-type(2){ order: 4; }
+  .abimg:nth-of-type(3){ order: 5; }
+  .abchunk:nth-of-type(3){ order: 6; }
+  .abimg:nth-of-type(4){ order: 7; }
+  .abchunk:nth-of-type(4){ order: 8; }
+  .abimg:nth-of-type(5){ order: 9; }
+  .abchunk:nth-of-type(5){ order: 10; }
+
+  /* triggers only exist to drive the desktop pin/step effect —
+     not needed once mobile just stacks everything in flow */
+  .abtrigger{
     display: none;
   }
+}
 
-  .abchunk.abshow{
-    display: block;
+/* ============================================================
+   certifications section — v2 (certgrid / certcard / certpop)
+   ============================================================ */
+
+.certgrid{
+  display: flex;
+  gap: 22px;
+  overflow-x: auto;
+  padding: 10px 22px 30px;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+}
+
+.certgrid::-webkit-scrollbar{
+  height: 6px;
+}
+
+.certgrid::-webkit-scrollbar-track{
+  background: transparent;
+}
+
+.certgrid::-webkit-scrollbar-thumb{
+  background: rgba(255,255,255,0.15);
+  border-radius: 10px;
+}
+
+.certcard{
+  all: unset;
+  box-sizing: border-box;
+  position: relative;
+  flex: 0 0 340px;
+  scroll-snap-align: start;
+  cursor: pointer;
+  border-radius: var(--radius);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease,
+              border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.certcard.certin{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.certcard:hover,
+.certcard:focus-visible{
+  border-color: rgba(255,255,255,0.22);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+}
+
+.certcard:hover .certpicwrap img,
+.certcard:focus-visible .certpicwrap img{
+  transform: scale(1.06);
+}
+
+.certcard:hover .certsheen,
+.certcard:focus-visible .certsheen{
+  transform: translateX(120%);
+}
+
+.certcard:hover .certzoom,
+.certcard:focus-visible .certzoom{
+  background: var(--text);
+  color: var(--bg);
+  transform: scale(1.08);
+}
+
+.certpicwrap{
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  background: #10100f;
+}
+
+.certpicwrap img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.certsheen{
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(255,255,255,0.16) 45%,
+    transparent 100%
+  );
+  transform: translateX(-20%);
+  transition: transform 0.85s ease;
+  pointer-events: none;
+}
+
+.certfoot{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px;
+}
+
+.certag{
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  text-align: left;
+  line-height: 1.4;
+}
+
+.certzoom{
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  color: var(--text);
+  transition: background 0.35s ease, color 0.35s ease, transform 0.35s ease;
+}
+
+/* --- full-resolution popup card --- */
+
+.certpop{
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.35s ease, visibility 0s linear 0.35s;
+}
+
+.certpop.certopen{
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.35s ease;
+}
+
+.certpopback{
+  position: absolute;
+  inset: 0;
+  background: rgba(10,9,8,0.82);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.certpopcard{
+  position: relative;
+  z-index: 1;
+  max-width: min(900px, 92vw);
+  max-height: 88vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.55);
+  transform: scale(0.92) translateY(18px);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.35s ease;
+}
+
+.certpop.certopen .certpopcard{
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+.certpopimg{
+  display: block;
+  width: 100%;
+  max-height: 74vh;
+  object-fit: contain;
+  background: #0c0b0a;
+}
+
+.certpopcaption{
+  padding: 16px 20px;
+  font-size: 14.5px;
+  color: var(--muted);
+  text-align: left;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.certpopclose{
+  all: unset;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.45);
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.certpopclose:hover,
+.certpopclose:focus-visible{
+  background: rgba(0,0,0,0.7);
+  transform: rotate(90deg);
+}
+
+@media (max-width: 860px){
+  .certcard{
+    flex-basis: 78vw;
   }
 
-  .abtrigger{
-    height: 55vh;
+  .certpicwrap{
+    height: 190px;
+  }
+}
+
+body.certlock{
+  overflow: hidden;
+}
+
+/* ============================================================
+   the "lid" — everything except the footer lives in here.
+   it's opaque and stacked above the footer, so the footer stays
+   completely hidden underneath it until you scroll far enough
+   that the lid runs out and the fixed footer shows through.
+   ============================================================ */
+
+.pagelid{
+  position: relative;
+  z-index: 2;
+  background: var(--bg);
+}
+
+/* ============================================================
+   end-of-page social bar (endbar / endcard) — lives fixed to the
+   bottom of the viewport, *underneath* the lid the whole time.
+   it only becomes visible once the lid has scrolled out of the
+   way, like a drawer sliding open to reveal what's underneath.
+   ============================================================ */
+
+.endbar{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 100%;
+  background: var(--text);
+  box-shadow: 0 -8px 24px rgba(0,0,0,0.25);
+  display: flex;
+  justify-content: center;
+  /* the bar itself is always full-bleed and full-width — it's the
+     .endcard content inside that fades/slides in. this way the
+     colored bar exactly fills the reveal margin left by .pagelid,
+     edge to edge, with no gap and nothing overlapping the lid. */
+}
+
+.endcard{
+  width: 100%;
+  max-width: var(--max);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  color: var(--bg);
+  padding: 22px 30px;
+
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease,
+              transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.endcard.endshow{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.endleft{
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  flex: 1 1 160px;
+}
+
+.endlogo{
+  font-family: 'bGilroy';
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--bg);
+}
+
+.enddot{
+  font-size: 13px;
+  color: rgba(36,35,35,0.55);
+}
+
+.endnote{
+  margin: 0;
+  font-size: 13.5px;
+  color: rgba(36,35,35,0.65);
+  text-align: center;
+  flex: 2 1 260px;
+}
+
+.endlinks{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  flex: 1 1 160px;
+}
+
+.endlink{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(36,35,35,0.08);
+  color: var(--bg);
+  transition: background 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease;
+
+  opacity: 0;
+  transform: translateY(14px) scale(0.7);
+}
+
+.endcard.endshow .endlink{
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+              background 0.3s ease, color 0.3s ease;
+}
+
+.endcard.endshow .endlink:nth-child(1){ transition-delay: 0.15s; }
+.endcard.endshow .endlink:nth-child(2){ transition-delay: 0.25s; }
+.endcard.endshow .endlink:nth-child(3){ transition-delay: 0.35s; }
+
+.endlink:hover,
+.endlink:focus-visible{
+  background: var(--bg);
+  color: var(--text);
+  transform: translateY(-3px) scale(1.08);
+}
+
+@media (max-width: 700px){
+  .endcard{
+    justify-content: center;
+    text-align: center;
+    padding: 26px 24px;
+  }
+
+  .endleft{
+    justify-content: center;
+    flex-basis: 100%;
+  }
+
+  .endnote{
+    flex-basis: 100%;
+    order: 3;
+  }
+
+  .endlinks{
+    justify-content: center;
+    flex-basis: 100%;
   }
 }
